@@ -1,2 +1,2 @@
-# northwind
-Web application based on northwind database
+# Northwind
+Web application based on Northwind database
