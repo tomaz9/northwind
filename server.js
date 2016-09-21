@@ -1,10 +1,11 @@
 //Libraries
 var express = require('express');
 var server  = express();
-var mysql   = require('mysql');
-
-if (!process.env.PORT)
-    process.env.PORT = 8080;
+var mysql   =  require('mysql');
+var formidable = require("formidable");
+server.set('view engine', 'ejs');
+var util = require('util');
+server.use(express.static('public'));
 
 //Creating connection to database
 var connection = mysql.createConnection({
@@ -23,15 +24,17 @@ connection.connect(function(err){
 });
 
 server.get('/', function (req, res) {
-    connection.query('SELECT * FROM customers LIMIT 5', function(err, rows, fields) {
-        connection.end();
-        if (!err)
-            res.send(rows);
-           // console.log(rows);
+    res.render('index', {});
+});
+
+server.get('/products', function(req, res) {
+    connection.query('SELECT * FROM products', function(err, rows, fields) {
+        if (!err) {
+            res.render('products', {products: rows});
+        }
         else
             console.log('Error while performing Query.');
     });
-    
 });
 
 server.listen(process.env.PORT, function() {

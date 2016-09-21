@@ -1,0 +1,52 @@
+<nav class="navbar navbar-default">
+    <a class="navbar-brand" href="#">Products</a>
+    <form class="form-inline pull-xs-right">
+        <input class="form-control" type="text" placeholder="Search">
+        <div class="btn-group">
+            <button type="button" class="btn btn-primary">Search</button>
+            <button type="button" class="btn btn-primary dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span class="sr-only">Search</span>
+            </button>
+            <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item" href="#">Search by name</a>
+                <a class="dropdown-item" href="#">Search by category</a>
+            </div>
+        </div>
+    </form>
+</nav>
+
+<table class="table table-sm table-striped">
+  <thead>
+    <tr>
+      <th>Product code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity per unit</th>
+      <th style="text-align: center;">Standard cost</th>
+      <th>List price</th>
+      <th>Reorder level</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% products.forEach(function(product) { %>
+    <tr>
+      <th scope="row"><%= product.product_code %></th>
+      <td><%= product.product_name %></td>
+      <td><%= product.category %></td>
+      <td><%= product.quantity_per_unit %></td>
+      <td style="text-align: center;"><%= product.standard_cost %> $</td>
+      <td><%= product.list_price %></td>
+      <td><%= product.reorder_level %></td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button class="btn btn-success btn-sm">Reorder</button>
+          <button class="btn btn-primary btn-sm">Edit</button>
+          <button class="btn btn-info btn-sm">Info</button>
+          <button class="btn btn-danger btn-sm">Delete</button>
+        </div>
+      </td>
+    </tr>
+    <% }); %>
+  </tbody>
+</table>
